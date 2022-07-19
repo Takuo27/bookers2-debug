@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destory'
   get 'book_comments/create'
   get 'book_comments/destroy'
   get 'favorites/create'
@@ -9,7 +11,18 @@ Rails.application.routes.draw do
    resource :favorites, only: [:create, :destroy]
    resources :book_comments, only: [:create, :destroy]
   end
-  resources :users, only: [:index,:show,:edit,:update]
+  
+  
+  resources :users, only: [:index,:show,:edit,:update] do
+      resource :relationships, only: [:create, :destroy]
+      member do 
+           get :followings
+           get :followers
+       end
+      
+  end
+  
+  
   
  get 'home/about' => 'homes#about', as:"about"
   

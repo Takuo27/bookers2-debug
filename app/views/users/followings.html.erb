@@ -1,0 +1,5 @@
+<% if @user.followings.exists? %>
+        <%= render 'index', users: @user.followings %> 
+  <% else %>
+    <p>ユーザーはいません</p>
+<% end %>
