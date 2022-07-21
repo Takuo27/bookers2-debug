@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'homes#top'
-  get "search" => "searches#search"
+  get '/search', to: 'searches#search'
   get 'relationships/create'
   get 'relationships/destory'
   get 'book_comments/create'
