@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   
   
   resources :users, only: [:index,:show,:edit,:update] do
-       get "search", to: "users#search"
+       get "daily_posts" => "users#daily_posts"
       resource :relationships, only: [:create, :destroy]
       member do 
            get :followings
