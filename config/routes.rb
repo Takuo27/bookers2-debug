@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'favorites/create'
   get 'favorites/destroy'
   
+  get 'chat/:id' => 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
+  
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
    
    resource :favorites, only: [:create, :destroy]

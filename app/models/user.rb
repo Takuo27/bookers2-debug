@@ -14,6 +14,8 @@ class User < ApplicationRecord
   
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :user_rooms
+  has_many :chats
   
   validates :name, presence: true, uniqueness: true
   validates :name, length: {in:2..20}
