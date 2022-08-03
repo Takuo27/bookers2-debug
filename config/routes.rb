@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'favorites/destroy'
   
   get 'chat/:id' => 'chats#show', as: 'chat'
-  resources :chats, only: [:create]
+  resources :chats, only: [:create, :show]
   
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
    
@@ -22,11 +22,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index,:show,:edit,:update] do
        get "daily_posts" => "users#daily_posts"
       resource :relationships, only: [:create, :destroy]
-      member do 
-           get :followings
-           get :followers
-       end
-      
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
   end
   
   

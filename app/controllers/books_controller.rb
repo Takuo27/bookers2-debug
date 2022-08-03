@@ -6,6 +6,9 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @user = @book.user
     @book_comment = BookComment.new
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def index
@@ -13,6 +16,9 @@ class BooksController < ApplicationController
     @book = Book.new
     @user = current_user
     @books = Book.includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def create
