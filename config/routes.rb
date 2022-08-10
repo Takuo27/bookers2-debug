@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   
   get 'chat/:id' => 'chats#show', as: 'chat'
   resources :chats, only: [:create, :show]
-  resources :groups, only: [:new, :create, :edit, :show, :index, :update]
   
+  resources :groups do
+      get "join" => "groups#join"
+  end
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update] do
    
    resource :favorites, only: [:create, :destroy]
